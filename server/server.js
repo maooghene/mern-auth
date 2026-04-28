@@ -14,7 +14,6 @@ connectDB();
 
 
 const allowedOrigins = [
-  "http://localhost:5173",
   "https://mern-auth-five-orpin.vercel.app", 
 ];
 
