@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
 
      const navigate = useNavigate();
-     
+
   const {userData} = useContext(AppContent)
 
   return (
@@ -22,18 +22,23 @@ const Header = () => {
       </h1>
 
       <h2 className="text-3xl sm:text-5xl font-semibold mb-4">
-        welcome to our app
+        {userData ? "Great to see you back!" : "Welcome to our app"}
       </h2>
+
       <p className="mb-8 max-w-md">
-        Let's start with a quick product tour and we will have you up and
-        running in not time!
+        {userData
+          ? "You are all set! Explore your dashboard and manage your account settings below."
+          : "Let's start with a quick product tour and we will have you up and running in no time!"}
       </p>
-      <button
-        onClick={() => navigate("/login")}
-        className="border border-gray-500 rounded-full px-8 py-2 hover:bg-gray-100 transition-all cursor-pointer"
-      >
-        Get Started
-      </button>
+
+      {!userData && (
+        <button
+          onClick={() => navigate("/login")}
+          className="border border-gray-500 rounded-full px-8 py-2 hover:bg-gray-100 transition-all cursor-pointer"
+        >
+          Get Started
+        </button>
+      )}
     </div>
   );
 };
