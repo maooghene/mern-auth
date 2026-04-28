@@ -1,12 +1,11 @@
-import nodemailer from 'nodemailer'
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
+  service: "gmail", // ⚓ Use 'service' for easier Gmail setup
   auth: {
-    user: "2b262b02a86a71",
-    pass: "1007a84b340a87"
-  }
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
 });
 
-export default transporter
+export default transporter;
