@@ -10,23 +10,29 @@ const Navbar = () => {
    const { userData, backendUrl, setUserData, setIsLoggedin } =
      useContext(AppContent);
 
-     const sendVerificationOtp = async ()=>{
-        try {
-            axios.defaults.withCredentials = true;
+    const sendVerificationOtp = async () => {
+      try {
+        axios.defaults.withCredentials = true;
 
-            const { data } = await axios.post(
-              `${backendUrl}/api/auth/send-verify-otp`,
-            );
-            if(data.success){
-                navigate('/email-verify')
-                toast.success(data.message)
-            }else{
-                toast.error(data.message)
-            }
-        } catch (error) {
-            toast.error(error.message)
+        // ⚓ Added {} as the second argument
+        const { data } = await axios.post(
+          `${backendUrl}/api/auth/send-verify-otp`,
+          {},
+          { withCredentials: true },
+        );
+
+        if (data.success) {
+          navigate("/email-verify");
+          toast.success(data.message);
+        } else {
+          toast.error(data.message);
         }
-     }
+      } catch (error) {
+        // This will now show "Network Error" if the URL or CORS is wrong
+        toast.error(error.message);
+      }
+    };
+
 
    const logout = async () => {
      try {

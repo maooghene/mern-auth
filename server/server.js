@@ -13,9 +13,7 @@ const port = process.env.PORT || 4000
 connectDB();
 
 
-const allowedOrigins = [
-  "https://mern-auth-five-orpin.vercel.app", 
-];
+const allowedOrigins = ["https://mern-auth-hf9y.vercel.app"];
 
 app.use(
   cors({
